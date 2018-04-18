@@ -71,7 +71,7 @@ def extract_to_dict(country_subset):
     text_dict = {}
     for index, row in country_subset.iterrows():
         try: 
-            text_dict[row['name']] = extract_text(row['file'])
+            text_dict[row['name']] = [extract_text(row['file'])]
         except:
             print('Cannot extract text for ' + str(row['name']))
     return text_dict
