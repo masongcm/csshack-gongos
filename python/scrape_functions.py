@@ -60,3 +60,12 @@ def extract_text(document):
             text_page.append(page_content)
     text = " ".join(text_page)
     return text
+
+#function to extract text from documents and converting them into a dictionary
+# dictionary keys are names of NGOs
+# dictionary values are full text of report
+def extract_to_dict(country_subset):
+    text_dict = {}
+    for index, row in country_subset.iterrows():
+        text_dict[row['name']] = extract_text(row['file'])
+    return text_dict
