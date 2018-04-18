@@ -1,5 +1,4 @@
 # function to scrape OHCHR urls for organisations and pdfs
-
 def ohchr_scrape(url):
     import requests
     import pandas as pd
@@ -37,9 +36,27 @@ def ohchr_scrape(url):
 
     return dforgs
 
-
+# function to download pdf from URL
+# url = url of pdf file
+# filepath = path of file to write
 def download_pdf(url, filepath):
     import requests
     r = requests.get(url)
     with open(filepath, 'wb') as f:  
         f.write(r.content)
+        
+# function to extract text from document
+# (returns text as a string)
+def extract_text(document):
+    import PyPDF2
+    from PyPDF2 import PdfFileReader
+    with open(document,‘rb’) as pdf_file:
+        read_pdf = PyPDF2.PdfFileReader(pdf_file)
+        number_of_pages = read_pdf.getNumPages()
+        text_page = []
+        for page_number in range(number_of_pages):   # use xrange in Py2
+            page = read_pdf.getPage(page_number)
+            page_content = page.extractText()
+            text_page.append(page_content)
+    text = ” “.join(text_page)
+    return text
