@@ -27,13 +27,16 @@ def ohchr_scrape(url):
                 org['pdf'] = table_cells[1].find('a')['href']
             except: 
                 print('error for pdf url for row ' + str(i))
+            try: # store language
+                org['lang'] = table_cells[1].find('a').contents[0]
+            except: 
+                print('error for language for row ' + str(i))
             orgs.append(org)
         i=i+1
         
     dforgs = pd.DataFrame(orgs)
-    dforgs = dforgs.drop_duplicates()
     dforgs = dforgs.drop(dforgs.index[0])
-
+        
     return dforgs
 
 # function to download pdf from URL
