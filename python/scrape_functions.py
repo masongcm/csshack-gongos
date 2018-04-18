@@ -58,5 +58,5 @@ def extract_text(document):
             page = read_pdf.getPage(page_number)
             page_content = page.extractText()
             text_page.append(page_content)
-    text = ” “.join(text_page)
+    text = " ".join(text_page)
     return text
