@@ -29,6 +29,7 @@ def ohchr_scrape(url):
                 print('error for pdf url for row ' + str(i))
             try: # store language
                 org['lang'] = table_cells[1].find('a').contents[0]
+                org['lang'] = org['lang'].lower()
             except: 
                 print('error for language for row ' + str(i))
             orgs.append(org)
@@ -67,7 +68,6 @@ def extract_text(document):
 #function to extract text from documents and converting them into a dictionary
 # dictionary keys are names of NGOs
 # dictionary values are full text of report
-
 def extract_to_dict(country):
     text_dict = {}
     for index, row in country.iterrows():
