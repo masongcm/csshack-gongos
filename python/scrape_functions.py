@@ -76,3 +76,19 @@ def extract_to_dict(country):
         except:
             print('Cannot extract text for ' + str(row['name']))
     return text_dict
+
+# function gets the text from csv file
+# turns them into a dataframe 
+def get_text(csv_name):
+    import pandas as pd
+    from scrape_functions import extract_to_dict
+    country_csv = pd.read_csv(csv_name)
+    data_dict = extract_to_dict(country_csv)
+    data = pd.DataFrame(data_dict)
+    data = data.reset_index().transpose()
+    data.rename(columns = {0:'ngo_name', 1:'text', 2:'language'} , inplace=True)
+    data = data.drop('index', axis=0)
+    data['text'] = data['text'].apply(lambda x: x[0].replace("\n",""))
+    data['language'] = data['language'].replace("español", "spanish")
+    data['language'] = data['language'].replace("français", "french")
+    return data
