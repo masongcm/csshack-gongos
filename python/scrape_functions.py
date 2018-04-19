@@ -67,11 +67,12 @@ def extract_text(document):
 #function to extract text from documents and converting them into a dictionary
 # dictionary keys are names of NGOs
 # dictionary values are full text of report
+
 def extract_to_dict(country):
     text_dict = {}
     for index, row in country.iterrows():
         try: 
-            text_dict[row['name']] = [[extract_text(row['file'])], row['lang']]
+            text_dict[index] = [row['name'],[extract_text(row['file'])], row['lang']]
         except:
             print('Cannot extract text for ' + str(row['name']))
     return text_dict
