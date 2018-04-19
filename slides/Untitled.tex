@@ -1,0 +1,65 @@
+\documentclass[xcolor=table]{beamer}
+\usepackage{amsmath,latexsym}
+\usepackage{epsfig}
+\usepackage{amssymb,indentfirst,verbatim,afterpage,caption,graphicx,subfigure,float,rotating}
+\usepackage{epstopdf,bbm,fixmath}
+\usepackage{color}
+\usepackage{adjustbox}
+\usepackage [english]{babel}
+\pdfmapfile{+sansmathaccent.map}
+\usepackage [autostyle, english = american]{csquotes}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{theorems}[numbered]
+\beamertemplatenavigationsymbolsempty
+\MakeOuterQuote{"}
+\usetheme[secheader]{Madrid}
+\usecolortheme{beaver}
+\newcommand{\backupbegin}{
+   \newcounter{framenumberappendix}
+   \setcounter{framenumberappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \addtocounter{framenumberappendix}{-\value{framenumber}}
+   \addtocounter{framenumber}{\value{framenumberappendix}} 
+}
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+  %  \insertframenumber/\inserttotalframenumber
+}
+
+
+\title[CC \& RP]{\textbf{Cost of Consideration and Revealed Preference}}
+\author
+{Gavin Kader}
+\institute{UCL}
+\date[12th April, 2018]{12th April, 2018}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\centering{\large{2018 ENTER Jamboree, TSE}}
+\end{frame}
+
+\section{Motivation}
+\subsection{}
+\begin{frame}
+\frametitle{What is a consideration set?}
+\begin{itemize}
+\pause
+\item  First introduced by Howard and Sheth (1969), Wright and Barbour (1977)
+\item A subset of the total number of goods with which a consumer makes their decisions
+\item For example:
+	\begin{itemize}
+	\item Over 20 tea companies in the UK selling multiple types of tea
+	\item A consideration set (for a particular individual) could involve teas only sold by PG Tips and Tetley
+	\end{itemize}
+\pause
+\item Set of goods used to make decisions \textit{"...need not coincide with the set of all possible alternatives"} (Horowitz et. al (1995))
+\item Costly to use the set of total alternatives
+\end{itemize}
+\end{frame}
+
+\end{document}
