@@ -79,11 +79,9 @@ def extract_to_dict(country):
 
 # function gets the text from csv file
 # turns them into a dataframe 
-def get_text(csv_name):
+def get_text(datain):
     import pandas as pd
-    from scrape_functions import extract_to_dict
-    country_csv = pd.read_csv(csv_name)
-    data_dict = extract_to_dict(country_csv)
+    data_dict = extract_to_dict(datain)
     data = pd.DataFrame(data_dict)
     data = data.reset_index().transpose()
     data.rename(columns = {0:'ngo_name', 1:'text', 2:'language'} , inplace=True)
@@ -91,4 +89,22 @@ def get_text(csv_name):
     data['text'] = data['text'].apply(lambda x: x[0].replace("\n",""))
     data['language'] = data['language'].replace("español", "spanish")
     data['language'] = data['language'].replace("français", "french")
+    return data
+
+# function to retrieve pdfs from urls and attach pdf path to dataset
+def get_pdfs(data, folderpath):
+    import time
+    filenames = []
+    for index, row in data.iterrows():
+        pdfurl = row['pdf']
+        orgname = row['name']
+        try:
+            filename = folderpath + "_".join(orgname.split()) + '.pdf'
+            filenames.append(filename)
+            download_pdf(pdfurl, filename)
+            print('Downloaded ' + orgname)
+        except:
+            print('Skipping ' + orgname)
+        time.sleep(.5)
+    data['file'] = filenames
     return data
